@@ -4,6 +4,9 @@ import io.restassured.response.Response;
 import prueba.tecnica.API.config.SpecBuilder;
 import prueba.tecnica.API.controllers.UserController;
 import prueba.tecnica.API.models.UserModel;
+import prueba.tecnica.API.utils.ConfigLoader;
+
+import java.time.LocalDate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -19,13 +22,13 @@ public class UserTest extends SpecBuilder {
 
         UserModel newUser = UserModel.builder()
                 .id(randomId())
-                .username("caprini92")
-                .firstName("lis")
-                .lastName("mendez")
-                .email("jessicalis@gmail.com")
-                .password("pass")
-                .phone("4234234324")
-                .userStatus(0)
+                .username(ConfigLoader.getInstance().getProperty("username"))
+                .firstName(ConfigLoader.getInstance().getProperty("firstName"))
+                .lastName(ConfigLoader.getInstance().getProperty("lastName"))
+                .email(ConfigLoader.getInstance().getProperty("email"))
+                .password(ConfigLoader.getInstance().getProperty("password"))
+                .phone(ConfigLoader.getInstance().getProperty("phone"))
+                .userStatus(Integer.valueOf(ConfigLoader.getInstance().getProperty("userStatus")))
                 .build();
         response = userController.createUser(newUser);
         assertThat(response.getStatusCode(),equalTo(200));
@@ -33,9 +36,8 @@ public class UserTest extends SpecBuilder {
 
     @org.testng.annotations.Test
     public void getUserAndValidateUserAndPassword() {
-        response = userController.getUserByUserName("caprini92");
+        response = userController.getUserByUserName(ConfigLoader.getInstance().getProperty("username"));
+        assertThat(response.getStatusCode(),equalTo(200));
         response.then().log();
     }
-
-
 }
