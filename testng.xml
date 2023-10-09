@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite de Prueba">
+    <test name="Prueba de Ejemplo">
+        <classes>
+            <class name="prueba.tecnica.API.test.UserTest"/>
+            <class name="prueba.tecnica.API.test.PetTest"/>
+        </classes>
+    </test>
+</suite>

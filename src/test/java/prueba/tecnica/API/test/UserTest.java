@@ -5,12 +5,10 @@ import prueba.tecnica.API.config.SpecBuilder;
 import prueba.tecnica.API.controllers.UserController;
 import prueba.tecnica.API.models.UserModel;
 import prueba.tecnica.API.utils.ConfigLoader;
-
-import java.time.LocalDate;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static prueba.tecnica.API.utils.RandomId.randomId;
+
 
 public class UserTest extends SpecBuilder {
 
@@ -18,7 +16,7 @@ public class UserTest extends SpecBuilder {
     private UserController userController = new UserController();
 
     @org.testng.annotations.Test
-    public void createUserWithValidUserAndPassword() {
+    public void createUserWithValidData() {
 
         UserModel newUser = UserModel.builder()
                 .id(randomId())
@@ -35,7 +33,7 @@ public class UserTest extends SpecBuilder {
     }
 
     @org.testng.annotations.Test
-    public void getUserAndValidateUserAndPassword() {
+    public void getUser() {
         response = userController.getUserByUserName(ConfigLoader.getInstance().getProperty("username"));
         assertThat(response.getStatusCode(),equalTo(200));
         response.then().log();

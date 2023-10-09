@@ -21,7 +21,7 @@ public class ConfigLoader {
     public String getProperty(String key) {
         String property = properties.getProperty(key);
         if (property != null) return property;
-        else throw new RuntimeException("No se encuentra la property " + key);
+        else throw new RuntimeException("Property '" + key + "' not found.");
         }
 
     }
