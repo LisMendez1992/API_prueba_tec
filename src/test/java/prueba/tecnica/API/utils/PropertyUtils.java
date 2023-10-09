@@ -17,11 +17,11 @@ public class PropertyUtils {
                 properties.load(reader);
             } catch (IOException e) {
                 e.printStackTrace();
-                throw new RuntimeException("No fue posible cargar el archivo de propiedades");
+                throw new RuntimeException("Failed to load the properties file.");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            throw new RuntimeException("No se encontro el archivo");
+            throw new RuntimeException("File not found.");
         }
         return properties;
     }

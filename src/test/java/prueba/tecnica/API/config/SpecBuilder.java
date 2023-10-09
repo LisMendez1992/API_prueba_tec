@@ -7,7 +7,11 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.testng.annotations.BeforeClass;
+
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.lessThan;
 
 
@@ -23,6 +27,7 @@ public class SpecBuilder {
                 .log(LogDetail.ALL)
                 .build();
     }
+
     public static ResponseSpecification getResponseSpec() {
         return new ResponseSpecBuilder()
                 .expectResponseTime(lessThan(5000L), TimeUnit.MILLISECONDS)
